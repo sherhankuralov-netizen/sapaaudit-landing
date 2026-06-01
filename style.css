@@ -618,6 +618,18 @@ body {
   color: var(--text-3);
 }
 
+.footer__legal {
+  padding: 6px 0 14px;
+  text-align: center;
+}
+
+.footer__legal p {
+  font-size: 11px;
+  color: var(--text-3);
+  font-style: italic;
+  opacity: 0.7;
+}
+
 /* --- Floating WhatsApp -------------------------------------------------- */
 
 .float-wa {
