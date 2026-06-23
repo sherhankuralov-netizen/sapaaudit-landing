@@ -44,6 +44,7 @@
   --shadow: 0 4px 32px rgba(0, 0, 0, 0.28);
   --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, 'Helvetica Neue', Arial, sans-serif;
   --nav-h: 64px;
+  --container-max: 1280px;
 }
 
 html { scroll-behavior: smooth; }
@@ -62,9 +63,10 @@ body {
 /* --- Utility ------------------------------------------------------------ */
 
 .container {
-  max-width: 1100px;
+  width: 100%;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 clamp(20px, 4vw, 48px);
 }
 
 /* --- Navigation --------------------------------------------------------- */
@@ -197,7 +199,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: calc(var(--nav-h) + 72px) 24px 110px;
+  padding: calc(var(--nav-h) + 72px) 0 110px;
   position: relative;
   background:
     radial-gradient(ellipse 90% 70% at 50% 5%, rgba(17, 42, 80, 0.85) 0%, transparent 65%),
@@ -228,14 +230,19 @@ body {
   pointer-events: none;
 }
 
-.hero__content {
+.hero__inner {
   position: relative;
   z-index: 1;
+  width: 100%;
+}
+
+.hero__content {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0;
   max-width: 660px;
+  margin: 0 auto;
 }
 
 /* Full logotype — inline SVG, width-controlled so it never overflows */
@@ -369,17 +376,14 @@ body {
 }
 
 .services__grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
 }
 
 /* --- Card --------------------------------------------------------------- */
 
 .card {
-  flex: 1 1 280px;
-  max-width: 340px;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--r);
@@ -533,7 +537,7 @@ body {
 .cta-section__inner p {
   font-size: 17px;
   color: var(--text-2);
-  max-width: 400px;
+  max-width: 560px;
   line-height: 1.7;
 }
 
@@ -692,13 +696,98 @@ body {
   transform: none;
 }
 
+/* --- Desktop layout ----------------------------------------------------- */
+
+@media (min-width: 1024px) {
+  :root { --container-max: 1320px; }
+
+  .hero {
+    text-align: left;
+    align-items: stretch;
+  }
+
+  .hero__content {
+    max-width: none;
+    margin: 0;
+    display: grid;
+    grid-template-columns: minmax(220px, 280px) 1fr;
+    column-gap: clamp(48px, 6vw, 96px);
+    row-gap: 0;
+    align-items: center;
+  }
+
+  .hero__logo {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    width: 248px;
+    max-width: none;
+    margin-bottom: 0;
+    justify-self: center;
+  }
+
+  .hero__sep { display: none; }
+
+  .hero__title,
+  .hero__spec,
+  .hero__sub,
+  .hero__actions {
+    grid-column: 2;
+    text-align: left;
+    justify-self: start;
+  }
+
+  .hero__title {
+    font-size: clamp(38px, 3.8vw, 54px);
+  }
+
+  .hero__spec {
+    justify-content: flex-start;
+  }
+
+  .hero__spec::before { display: none; }
+
+  .hero__spec::after {
+    flex: 1;
+    max-width: 120px;
+  }
+
+  .hero__sub {
+    max-width: 640px;
+    margin-left: 0;
+  }
+
+  .hero__actions {
+    align-items: flex-start;
+  }
+
+  #why-us .services__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  #services .services__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero__grid {
+    mask-image: radial-gradient(ellipse 90% 70% at 50% 40%, black 15%, transparent 78%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 40%, black 15%, transparent 78%);
+  }
+
+  .hero__radial {
+    width: 960px;
+    height: 640px;
+  }
+}
+
 /* --- Responsive --------------------------------------------------------- */
 
 @media (max-width: 768px) {
   :root { --nav-h: 58px; }
 
   .hero {
-    padding: calc(var(--nav-h) + 48px) 20px 100px;
+    padding: calc(var(--nav-h) + 48px) 0 100px;
   }
 
   .hero__logo {
@@ -708,11 +797,6 @@ body {
   .hero__title br { display: none; }
 
   .services { padding: 64px 0; }
-
-  .card {
-    flex: 1 1 100%;
-    max-width: 100%;
-  }
 
   .why { padding: 48px 0; }
 
