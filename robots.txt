@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sherhankuralov-netizen.github.io/sapaaudit-landing/sitemap.xml
+Sitemap: https://sapaaudit-am.kz/sitemap.xml
