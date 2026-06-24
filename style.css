@@ -429,84 +429,79 @@ body {
   line-height: 1.65;
 }
 
-/* --- Why ---------------------------------------------------------------- */
+/* --- FAQ ---------------------------------------------------------------- */
 
-.why {
-  padding: 60px 0;
+.faq {
+  padding: 72px 0;
   background: var(--bg-base);
   border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
 }
 
-.why__grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  justify-content: center;
-}
-
-.why__item {
-  flex: 1 1 220px;
-  max-width: 300px;
-  text-align: center;
+.faq__list {
+  max-width: 820px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 12px;
+  gap: 10px;
+}
+
+.faq__item {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--r);
-  padding: 28px 22px;
-  transition: background 0.25s, border-color 0.25s;
+  padding: 0 20px;
+  transition: border-color 0.2s, background 0.2s;
 }
 
-.why__item:hover {
+.faq__item[open] {
   background: var(--bg-card-h);
   border-color: var(--border-a);
 }
 
-.why__icon-wrap {
-  width: 48px;
-  height: 48px;
-  background: var(--accent-soft);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--accent);
-  transition: background 0.25s;
-}
-
-.why__item:hover .why__icon-wrap { background: rgba(122, 175, 200, 0.15); }
-
-.why__icon-wrap svg { width: 22px; height: 22px; }
-
-.why__item h3 {
-  font-size: 19px;
-  font-weight: 800;
+.faq__item summary {
+  list-style: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
   color: var(--text);
-  letter-spacing: -0.03em;
-  padding-bottom: 12px;
+  padding: 18px 28px 18px 0;
   position: relative;
+  line-height: 1.5;
 }
 
-.why__item h3::after {
+.faq__item summary::-webkit-details-marker { display: none; }
+
+.faq__item summary::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 20px;
-  height: 2px;
-  background: var(--accent);
-  border-radius: 2px;
-  opacity: 0.4;
+  right: 2px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  transform: translateY(-60%) rotate(45deg);
+  transition: transform 0.2s;
 }
 
-.why__item p {
+.faq__item[open] summary::after {
+  transform: translateY(-30%) rotate(225deg);
+}
+
+.faq__item p {
   font-size: 14px;
   color: var(--text-2);
-  line-height: 1.65;
+  line-height: 1.7;
+  padding: 0 0 18px;
+}
+
+.faq__item a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.faq__item a:hover {
+  text-decoration: underline;
 }
 
 /* --- CTA Section -------------------------------------------------------- */

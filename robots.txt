@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+Host: sapaaudit-am.kz
 Sitemap: https://sapaaudit-am.kz/sitemap.xml
